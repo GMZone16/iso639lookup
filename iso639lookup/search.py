@@ -1,10 +1,12 @@
+import importlib.resources
 import pandas as pd
 import json
 
-class ISO639Lookup :
-    def __init__(self, data_path = "resources/iso-info.csv"):
-        self.data = pd.read_csv(data_path)
-        
+
+class ISO639Lookup:
+    def __init__(self, data_filename="iso-info.csv"):
+       with importlib.resources.files("iso639lookup.resources").joinpath(data_filename).open("r", encoding="utf-8") as f:
+            self.data = pd.read_csv(f)
     def isoRowFind(self, code):
         return self.data[
             (self.data['part3'] == code) | 

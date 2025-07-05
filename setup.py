@@ -4,6 +4,10 @@ setup(
     name='iso639lookup',
     version='0.1.0',
     packages=find_packages(),
+    include_package_data=True,
+    package_data={
+        "iso639lookup": ["resources/*.csv"]
+    },
     install_requires=[
         'pandas'
     ],
@@ -16,5 +20,5 @@ setup(
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
     ],
-    python_requires='>=3.7',
+    python_requires='>=3.9',
 )

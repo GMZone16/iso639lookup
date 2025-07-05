@@ -1,0 +1,10 @@
+README.md
+setup.py
+iso639lookup/__init__.py
+iso639lookup/search.py
+iso639lookup.egg-info/PKG-INFO
+iso639lookup.egg-info/SOURCES.txt
+iso639lookup.egg-info/dependency_links.txt
+iso639lookup.egg-info/requires.txt
+iso639lookup.egg-info/top_level.txt
+iso639lookup/resources/iso-info.csv
