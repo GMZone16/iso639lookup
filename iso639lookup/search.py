@@ -6,8 +6,9 @@ import json
 class ISO639Lookup:
     def __init__(self, data_filename="iso-info.csv"):
        with importlib.resources.files("iso639lookup.resources").joinpath(data_filename).open("r", encoding="utf-8") as f:
-            self.data = pd.read_csv(f)
+            self.data = pd.read_csv(f, keep_default_na=False)
     def isoRowFind(self, code):
+       
         return self.data[
             (self.data['part3'] == code) | 
             (self.data['part2b'] == code) | 
@@ -18,10 +19,11 @@ class ISO639Lookup:
         result = self.isoRowFind(code)
 
         if result.empty:
-            return "NO PART 1"
+            return None
         
         if pd.isna(result["part1"].iloc[0]):
-            return "Part 1 does not exist"
+            return None
+        
         return result["part1"].iloc[0]
     
     def get_iso_part2t(self, code):
@@ -29,28 +31,28 @@ class ISO639Lookup:
 
 
         if result.empty:
-            return "ENTRY NON EXISTENT"
+            return None
         
         if pd.isna(result["Part2t"].iloc[0]):
-            return "Part 2t does not exist"
+            return None
         return result["part2t"].iloc[0]
     def get_iso_part2b(self, code):
         result = self.isoRowFind(code)
 
         if result.empty:
-            return "ENTRY NON EXISTENT"
+            return None
         
         if pd.isna(result["part2b"].iloc[0]):
-            return "Part 2b does not exist"
+            return None
         return result["part2b"].iloc[0]
     def get_iso_part3(self, code):
         result = self.isoRowFind(code)
 
         if result.empty:
-            return "ENTRY NON EXISTENT"
+            return None
         
         if pd.isna(result["part3"].iloc[0]):
-            return "Part 3 does not exist"
+            return None
         return result["part3"].iloc[0]
     
     def iso_lookup(self, code):
